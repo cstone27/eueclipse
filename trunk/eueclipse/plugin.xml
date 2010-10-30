@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Euphoria Editor"
+            extensions="ex,e,exw,exu"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="com.eutools.eueditor.editors.EUEditor"
+            id="com.eutools.eueditor.editors.EUEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="eueditor.Factory1"
+            class="eueditor.AdapterFactory1">
+         <adapter
+               type="eueditor.Adapter1">
+         </adapter>
+      </factory>
+   </extension>
+   <extension
+         id="euphoriaBuilder"
+         name="Euphoria Project Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="com.eutools.eueditor.builder.EUBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="euphoriaNature"
+         name="Euphoria Project Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.eutools.eueditor.builder.EuphoriaNature">
+         </run>
+      </runtime>
+      <builder
+            id="EUEditor.euphoriaBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="EUEditor.addRemoveNature"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="com.eutools.eueditor.builder.ToggleNatureAction"
+               enablesFor="+"
+               id="EUEditor.addRemoveNatureAction"
+               label="Add/Remove Euphoria Nature"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="EUEditor.popup.AddEuProject"
+            objectClass="org.eclipse.core.resources.IProject">
+         <menu
+               id="EUEditor.menu1"
+               label="New"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="com.eutools.eueditor.popup.actions.EuNewProjectPopup"
+               enablesFor="1"
+               id="EUEditor.newAction"
+               label="Euphoria Project"
+               menubarPath="EUEditor.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         id="xmlProblem"
+         name="XML Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.eutools.eueditor.preferences.EuEditorPreferencePage"
+            id="com.eutools.eueditor.preferences.EuEditorPreferencePage"
+            name="Euphoria">
+      </page>
+      <page
+            category="/com.eutools.eueditor.preferences.EuEditorPreferencePage"
+            class="com.eutools.eueditor.preferences.RuntimeInstallationPerferencePage"
+            id="com.eutools.preferences.RuntimeinstallationPreferences"
+            name="Runtime(s)">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.eutools.eueditor.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.eutools.eueditor.preferences.EuEditorPreferencePage"
+            id="EUEditor.page1"
+            name="Euphoria Default Properties">
+      </page>
+   </extension>
+  
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="eueditor.PerspectiveFactory1"
+            id="EUEditor.perspective1"
+            name="name">
+      </perspective>
+   </extension> <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="EUEditor"
+            name="Euphoria">
+      </category>
+      <wizard
+            category="EUEditor"
+            class="com.eutools.eueditor.project.EuProject"
+            icon="icons/sample.gif"
+            id="com.eutools.eueditor.project.EuProject"
+            name="Euphoria Project"
+            project="true">
+      </wizard>
+      <wizard
+            category="EUEditor"
+            class="com.eutools.eueditor.wizards.EuLibraryFileWizard"
+            icon="icons/sample.gif"
+            id="com.eutools.eueditor.wizards.EuLibraryFileWizard"
+            name="Euphoria Library File">
+      </wizard>
+   </extension>
+
+</plugin>
