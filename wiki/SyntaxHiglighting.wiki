@@ -8,6 +8,6 @@ Users will see syntax highlighting which is similar to the syntax highlighting p
 
 = Details =
 
-* Keyword highlighting
-* Built-in highlighting
-* Colors user configurable
+  * Keyword highlighting
+  * Built-in highlighting
+  * Colors user configurable
