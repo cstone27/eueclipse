@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="Euphoria Editor"
+            name="%editor.name"
             extensions="ex,e,exw,exu"
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
@@ -14,18 +14,8 @@
       </editor>
    </extension>
    <extension
-         point="org.eclipse.core.runtime.adapters">
-      <factory
-            adaptableType="eueditor.Factory1"
-            class="eueditor.AdapterFactory1">
-         <adapter
-               type="eueditor.Adapter1">
-         </adapter>
-      </factory>
-   </extension>
-   <extension
          id="euphoriaBuilder"
-         name="Euphoria Project Builder"
+         name="%extension.name"
          point="org.eclipse.core.resources.builders">
       <builder
             hasNature="true">
@@ -36,7 +26,7 @@
    </extension>
    <extension
          id="euphoriaNature"
-         name="Euphoria Project Nature"
+         name="%extension.name.0"
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
@@ -58,7 +48,7 @@
                class="com.eutools.eueditor.builder.ToggleNatureAction"
                enablesFor="+"
                id="EUEditor.addRemoveNatureAction"
-               label="Add/Remove Euphoria Nature"
+               label="%action.label"
                menubarPath="additions">
          </action>
       </objectContribution>
@@ -67,7 +57,7 @@
             objectClass="org.eclipse.core.resources.IProject">
          <menu
                id="EUEditor.menu1"
-               label="New"
+               label="%menu.label"
                path="additions">
             <separator
                   name="group1">
@@ -77,14 +67,14 @@
                class="com.eutools.eueditor.popup.actions.EuNewProjectPopup"
                enablesFor="1"
                id="EUEditor.newAction"
-               label="Euphoria Project"
+               label="%action.label.0"
                menubarPath="EUEditor.menu1/group1">
          </action>
       </objectContribution>
    </extension>
    <extension
          id="xmlProblem"
-         name="XML Problem"
+         name="%extension.name.1"
          point="org.eclipse.core.resources.markers">
       <super
             type="org.eclipse.core.resources.problemmarker">
@@ -98,13 +88,13 @@
       <page
             class="com.eutools.eueditor.preferences.EuEditorPreferencePage"
             id="com.eutools.eueditor.preferences.EuEditorPreferencePage"
-            name="Euphoria">
+            name="%page.name">
       </page>
       <page
-            category="/com.eutools.eueditor.preferences.EuEditorPreferencePage"
+            category="com.eutools.eueditor.preferences.EuEditorPreferencePage"
             class="com.eutools.eueditor.preferences.RuntimeInstallationPerferencePage"
             id="com.eutools.preferences.RuntimeinstallationPreferences"
-            name="Runtime(s)">
+            name="%page.name.0">
       </page>
    </extension>
    <extension
@@ -118,29 +108,30 @@
       <page
             class="com.eutools.eueditor.preferences.EuEditorPreferencePage"
             id="EUEditor.page1"
-            name="Euphoria Default Properties">
+            name="%page.name.1">
       </page>
    </extension>
   
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="eueditor.PerspectiveFactory1"
-            id="EUEditor.perspective1"
-            name="name">
+            class="com.eutools.eueditor.perspective.EuphoriaPerspectiveFactory"
+            icon="icons/euphoria.ico"
+            id="com.eutools.eueditor.EuphoriaPerspective"
+            name="Euphoria">
       </perspective>
    </extension> <extension
          point="org.eclipse.ui.newWizards">
       <category
             id="EUEditor"
-            name="Euphoria">
+            name="%category.name">
       </category>
       <wizard
             category="EUEditor"
             class="com.eutools.eueditor.project.EuProject"
             icon="icons/sample.gif"
             id="com.eutools.eueditor.project.EuProject"
-            name="Euphoria Project"
+            name="%wizard.name"
             project="true">
       </wizard>
       <wizard
@@ -148,8 +139,84 @@
             class="com.eutools.eueditor.wizards.EuLibraryFileWizard"
             icon="icons/sample.gif"
             id="com.eutools.eueditor.wizards.EuLibraryFileWizard"
-            name="Euphoria Library File">
+            name="%wizard.name.0">
       </wizard>
    </extension>
+                <extension
+                      point="org.eclipse.debug.core.launchModes">
+                   <launchMode
+                         label="bind"
+                         launchAsLabel="Bind"
+                         mode="com.eutools.eueditor.launchmodes.Bind">
+                   </launchMode>
+                </extension>
+                <extension
+                      point="org.eclipse.debug.core.launchConfigurationTypes">
+                   <launchConfigurationType
+                         delegate="com.eutools.eueditor.launch.EuBindLaunchConfigurationDelegate"
+                         delegateDescription="Binds Euphoria Source code in to an executable file"
+                         delegateName="Euphoria Binder"
+                         id="com.eutools.eueditor.launch.BindLaunchConfigurationType"
+                         modes="run"
+                         name="Euphoria Binder"
+                         public="true">
+                   </launchConfigurationType>
+                </extension>
+                <extension
+                      point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+                   <launchConfigurationTypeImage
+                         configTypeID="com.eutools.eueditor.launch.BindLaunchConfigurationType"
+                         icon="icons/euphoria.ico"
+                         id="com.eutools.eueditor.EuIcon">
+                   </launchConfigurationTypeImage>
+                </extension>
+                <extension
+                      point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+                   <launchConfigurationTabGroup
+                         class="com.eutools.eueditor.launch.EuBindLaunchConfigurationTabGroup"
+                         description="Common Config for Binding"
+                         id="com.eutools.eueditor.launch.BindTabGroup"
+                         type="com.eutools.eueditor.launch.BindLaunchConfigurationType">
+                   </launchConfigurationTabGroup>
+                </extension>
+                <extension
+                      point="org.eclipse.debug.ui.launchShortcuts">
+                   <shortcut
+                         category="org.eclipse.ui.externaltools"
+                         class="com.eutools.eueditor.launch.EuLaunchShortcut"
+                         description="Euphoria Binder"
+                         icon="icons/euphoria.ico"
+                         id="com.eutools.eueditor.launchShortcut"
+                         label="bind"
+                         modes="run">
+                      <configurationType
+                            id="com.eutools.eueditor.launch.BindLaunchConfigurationType">
+                      </configurationType>
+                      <perspective
+                            id="com.eutools.eueditor.EuphoriaPerspective">
+                      </perspective>
+                      <contextualLaunch>
+                         <contextLabel
+                               label="Euphoria Console Application"
+                               mode="run">
+                         </contextLabel>
+                         <enablement>
+                            <adapt
+                                  type="org.eclipse.debug.ui.actions.ILaunchable">
+                            </adapt>
+                         </enablement>
+                      </contextualLaunch>
+                   </shortcut>
+                </extension>
+                <extension
+                      point="org.eclipse.core.runtime.adapters">
+                   <factory
+                         adaptableType="com.eutools.eueditor.editors.EUEditor"
+                         class="org.eclipse.core.runtime.IAdapterFactory">
+                      <adapter
+                            type="org.eclipse.debug.ui.actions.ILaunchable">
+                      </adapter>
+                   </factory>
+                </extension>
 
 </plugin>
