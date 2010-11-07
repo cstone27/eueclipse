@@ -8,7 +8,7 @@ The EuEclipse Plug-In will provide the ability to edit Euphoria code in the Ecli
 
 = Details =
 
-  # [SyntaxHighliting Syntax Highlighting]
+  # [SyntaxHigliting Syntax Highlighting]
   # [CodeCompletion Context Sensitive code completion]
   # [SyntaxChecking Syntax checking]
   # [CodeTemplates Code templates]
