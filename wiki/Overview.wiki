@@ -1,0 +1,18 @@
+#summary This is the overview of the EuEclipse Plug-In Project
+
+= Introduction =
+
+The EuEclipse Plug-In will provide the ability to edit Euphoria code in the Eclipse development environment.  The functionality will largely mirror that of the Eclipse Java editor.
+
+
+= Details =
+
+  # Syntax Highlighting
+  # Context Sensitive code completion
+  # Syntax checking
+  # Code templates
+  # Outline View
+  # Namespace Explorer
+  # Code Tips
+    * Hover over code to view EuDoc
+    * Parameter Help
