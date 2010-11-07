@@ -12,7 +12,6 @@ Code completion within the editor will be context sensitive.  For instance, if a
 {{{
 atom fn
 sequence message = "Hello World!"
-
 fn = open("myfile.txt", "w")
 puts(
 
