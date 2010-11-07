@@ -1,4 +1,5 @@
 #summary This is the overview of the EuEclipse Plug-In Project
+#labels Featured,Phase-Requirements
 
 = Introduction =
 
@@ -7,12 +8,12 @@ The EuEclipse Plug-In will provide the ability to edit Euphoria code in the Ecli
 
 = Details =
 
-  # Syntax Highlighting
-  # Context Sensitive code completion
-  # Syntax checking
-  # Code templates
-  # Outline View
-  # Namespace Explorer
-  # Code Tips
-    * Hover over code to view EuDoc
-    * Parameter Help
+  # [SyntaxHighliting Syntax Highlighting]
+  # [CodeCompletion Context Sensitive code completion]
+  # [SyntaxChecking Syntax checking]
+  # [CodeTemplates Code templates]
+  # [OutlineView Outline View]
+  # [NamespaceExplorer Namespace Explorer]
+  # [CodeTips Code Tips]
+    * [EuDocCodeTips Hover over code to view EuDoc]
+    * [ParameterSyntax Parameter Help]
