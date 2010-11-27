@@ -22,3 +22,4 @@ Export-Package: com.eutools.eueditor,
  com.eutools.eueditor.project,
  com.eutools.eueditor.properties,
  com.eutools.eueditor.wizards
+Import-Package: org.eclipse.ui.views.contentoutline
