@@ -1,7 +1,15 @@
 package com.eutools.eueditor.editors;
 
-import org.eclipse.jface.text.rules.*;
-import org.eclipse.jface.text.*;
+import org.eclipse.jface.text.TextAttribute;
+import org.eclipse.jface.text.rules.EndOfLineRule;
+import org.eclipse.jface.text.rules.IRule;
+import org.eclipse.jface.text.rules.IToken;
+import org.eclipse.jface.text.rules.IWordDetector;
+import org.eclipse.jface.text.rules.RuleBasedScanner;
+import org.eclipse.jface.text.rules.SingleLineRule;
+import org.eclipse.jface.text.rules.Token;
+import org.eclipse.jface.text.rules.WhitespaceRule;
+import org.eclipse.jface.text.rules.WordRule;
 
 public class EUScanner extends RuleBasedScanner {
 	private static String [] builtins = {
@@ -68,12 +76,12 @@ public class EUScanner extends RuleBasedScanner {
 		return builtins;
 	}
 	public void setBuiltins(String[] builtins) {
-		this.builtins = builtins;
+		EUScanner.builtins = builtins;
 	}
 	public static String[] getKeywords() {
 		return keywords;
 	}
 	public void setKeywords(String[] keywords) {
-		this.keywords = keywords;
+		EUScanner.keywords = keywords;
 	}
 }

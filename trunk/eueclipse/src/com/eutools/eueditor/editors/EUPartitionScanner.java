@@ -9,8 +9,8 @@ public class EUPartitionScanner extends RuleBasedPartitionScanner {
 
 	public EUPartitionScanner() {
 		ColorManager manager = new ColorManager();
-		IToken xmlComment = new Token(EU_COMMENT);
-		IToken tag = new Token(EU_TAG);
+		//IToken xmlComment = new Token(EU_COMMENT);
+		//IToken tag = new Token(EU_TAG);
 		IToken procInstr =
 			new Token(
 				new TextAttribute(
