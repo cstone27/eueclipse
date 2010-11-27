@@ -21,8 +21,6 @@ public class CompletionProcessor implements IContentAssistProcessor {
           String indent = null;//lastIndent(document, offset);
           EUModel model = EUModel.getModel(document);
           model.getContentProposals(prefix, indent, offset, result);
-          //result.add("puts");
-          //result.add("sequence");
           return (ICompletionProposal[]) result.toArray(new ICompletionProposal[result.size()]);
        } catch (Exception e) {
           // ... log the exception ...

@@ -8,14 +8,13 @@ public class EuphoriaPerspectiveFactory implements IPerspectiveFactory {
 
 	@Override
 	public void createInitialLayout(IPageLayout layout) {
-		// TODO Auto-generated method stub
         // Get the editor area.
         String editorArea = layout.getEditorArea();
 
         // Top left: Resource Navigator view and Bookmarks view placeholder
         IFolderLayout topLeft = layout.createFolder("topLeft", IPageLayout.LEFT, 0.25f,
                 editorArea);
-        topLeft.addView(IPageLayout.ID_RES_NAV);
+        topLeft.addView(IPageLayout.ID_PROJECT_EXPLORER);
         topLeft.addPlaceholder(IPageLayout.ID_BOOKMARKS);
 
         // Bottom left: Outline view and Property Sheet view
