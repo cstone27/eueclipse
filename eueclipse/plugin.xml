@@ -218,5 +218,14 @@
                       </adapter>
                    </factory>
                 </extension>
+                <extension
+                      point="org.eclipse.ui.perspectiveExtensions">
+                   <perspectiveExtension
+                         targetID="com.eutools.eueditor.EuphoriaPerspective">
+                      <actionSet
+                            id="org.eclipse.debug.ui.launchActionSet">
+                      </actionSet>
+                   </perspectiveExtension>
+                </extension>
 
 </plugin>

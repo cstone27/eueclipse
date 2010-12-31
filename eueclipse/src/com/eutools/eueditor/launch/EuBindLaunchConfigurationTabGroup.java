@@ -8,8 +8,7 @@ import org.eclipse.debug.ui.ILaunchConfigurationTab;
 
 import com.eutools.eueditor.launch.tabs.MainTab;
 
-public class EuBindLaunchConfigurationTabGroup extends
-		AbstractLaunchConfigurationTabGroup {
+public class EuBindLaunchConfigurationTabGroup extends AbstractLaunchConfigurationTabGroup {
 	public static int MAIN_LOOKUP_TAB_INDEX = 0;
 	public static int ENVIRONMENT_TAB_INDEX = 1;
 	public static int COMMON_TAB_INDEX = 2;

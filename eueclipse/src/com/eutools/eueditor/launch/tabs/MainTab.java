@@ -33,7 +33,12 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 	// Controls
 	Text projectText = null;
 	Text fileText = null;
+	Text configText = null;
+	
 	Button projectButton = null;
+	Button fileButton = null;
+	Button configFileButton = null;
+	
 	ILaunchConfigurationWorkingCopy working;
 	
 	public MainTab() {
@@ -55,7 +60,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		projectButton = new Button(container, SWT.PUSH);
 		projectButton.setText("Browse...");
 		Listener listener = new Listener() {
-			
 			@Override
 			public void handleEvent(Event event) {
 				if (event.widget == projectButton){
@@ -102,6 +106,16 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		fileLabel.setText("File: ");
 		fileText = new Text(container, SWT.BORDER | SWT.SINGLE);
 		fileText.setLayoutData(gd);
+		fileButton = new Button(container, SWT.PUSH);
+		fileButton.setText("Browse...");
+		
+		Label configLabel = new Label(container, SWT.NULL);
+		configLabel.setText("Config File: ");
+		configText = new Text(container, SWT.BORDER | SWT.SINGLE);
+		configText.setLayoutData(gd);
+		configFileButton = new Button(container, SWT.PUSH);
+		configFileButton.setText("Browse...");
+
 		projectText.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
@@ -127,7 +141,28 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				if (working != null){
+					System.out.println("working is valid");
 					working.setAttribute(LaunchConfigurationProperty.FILE_NAME, fileText.getText());
+				}
+				else{
+					System.err.println("Working is NULL");
+				}
+				setDirty(true);
+				updateLaunchConfigurationDialog();
+			}
+		});
+		
+		configText.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				System.out.println("Config text modified");
+				if (working != null){
+					System.out.println("Working is not null");
+					working.setAttribute(LaunchConfigurationProperty.CONFIG_FILE, configText.getText());
+				}
+				else{
+					System.err.println("Working is NULL");
 				}
 				setDirty(true);
 				updateLaunchConfigurationDialog();
@@ -139,7 +174,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public String getName() {
-		return "Main";
+		return "Main   ";
 	}
 
 	@Override
@@ -147,6 +182,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		try {
 			projectText.setText(configuration.getAttribute(LaunchConfigurationProperty.PROJECT_NAME, "Select a project..."));
 			fileText.setText(configuration.getAttribute(LaunchConfigurationProperty.FILE_NAME, "Select a file..."));
+			configText.setText(configuration.getAttribute(LaunchConfigurationProperty.CONFIG_FILE, ""));
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -154,18 +190,30 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 	}
 	
 	public boolean isValid(ILaunchConfiguration launchConfig) {
-		String projectName;
 		System.out.println("Validating configuration");
 		try {
-			projectName = launchConfig.getAttribute(LaunchConfigurationProperty.PROJECT_NAME, "");
+			String projectName = launchConfig.getAttribute(LaunchConfigurationProperty.PROJECT_NAME, "");
 			String fileName = launchConfig.getAttribute(LaunchConfigurationProperty.FILE_NAME, "");
+			String configFileName = launchConfig.getAttribute(LaunchConfigurationProperty.CONFIG_FILE, "");
 			if (projectName.length() > 0){
 				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
 				if (project.exists()){
-					if (fileName != null){
+					if (fileName != null && fileName.length() > 0){
 						IFile file = project.getFile(fileName);
 						if (file.exists()){
 							setErrorMessage(null);
+							if (configFileName != null && configFileName.length() > 0){
+								file = project.getFile(configFileName);
+								if (file.exists()){
+									setErrorMessage(null);
+									System.out.println("Config valid, has config file");
+									return true;
+								}
+								else{
+									setErrorMessage("Select an existing config file");
+								}
+							}
+							System.out.println("Config valid, no config file");
 							return true;
 						}
 						else{
@@ -186,6 +234,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
+		System.err.println("Config not valid");
 		return false;
 	}
 
@@ -194,6 +243,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		// TODO Auto-generated method stub
 		configuration.setAttribute(LaunchConfigurationProperty.PROJECT_NAME, projectText.getText());
 		configuration.setAttribute(LaunchConfigurationProperty.FILE_NAME, fileText.getText());
+		configuration.setAttribute(LaunchConfigurationProperty.CONFIG_FILE, configText.getText());
 	}
 
 	@Override
