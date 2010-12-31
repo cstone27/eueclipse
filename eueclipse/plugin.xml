@@ -154,11 +154,11 @@
                       point="org.eclipse.debug.core.launchConfigurationTypes">
                    <launchConfigurationType
                          delegate="com.eutools.eueditor.launch.EuBindLaunchConfigurationDelegate"
-                         delegateDescription="Binds Euphoria Source code in to an executable file"
-                         delegateName="Euphoria Binder"
+                         delegateDescription="Launches a Euphoria application"
+                         delegateName="Euphoria Application"
                          id="com.eutools.eueditor.launch.BindLaunchConfigurationType"
                          modes="run"
-                         name="Euphoria Binder"
+                         name="Euphoria Application"
                          public="true">
                    </launchConfigurationType>
                 </extension>
