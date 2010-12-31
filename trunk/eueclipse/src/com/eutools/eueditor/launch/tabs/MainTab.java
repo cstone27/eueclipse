@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.internal.resources.Resource;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -25,9 +26,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
 
 import com.eutools.eueditor.builder.EuphoriaNature;
+import com.eutools.eueditor.launch.LaunchConfigurationProperty;
 
 public class MainTab extends AbstractLaunchConfigurationTab {
 
+	// Controls
 	Text projectText = null;
 	Text fileText = null;
 	Button projectButton = null;
@@ -55,7 +58,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			
 			@Override
 			public void handleEvent(Event event) {
-				// TODO Auto-generated method stub
 				if (event.widget == projectButton){
 					IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 					List<IResource> resources = new ArrayList<IResource>();
@@ -77,7 +79,17 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 					if (resources.size() > 0){
 						IResource[] res = resources.toArray(new IResource[resources.size()]);
 						ResourceListSelectionDialog d = new ResourceListSelectionDialog(getShell(), res);
+						d.setBlockOnOpen(true);
 						d.open();
+						Object[] selections = d.getResult();
+						if (selections != null && selections.length > 0){
+							if (selections[0] instanceof IProject){
+								IProject selection = (IProject)selections[0];
+								projectText.setText(selection.getName());
+								setDirty(true);
+								updateLaunchConfigurationDialog();
+							}
+						}
 					}
 					else{
 						System.err.println("No Euphoria projects found");
@@ -93,10 +105,21 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		projectText.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
-				if (working != null){
-					working.setAttribute("runProjectName", projectText.getText());
+				String projectName = projectText.getText();
+				if (projectName == null || projectName.length() == 0){
+					updateLaunchConfigurationDialog();
+					return;
 				}
-				setDirty(true);
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+				if (project != null){
+					if (project.exists()){
+						if (working != null){
+							working.setAttribute(LaunchConfigurationProperty.PROJECT_NAME, projectText.getText());
+							setDirty(true);					
+						}
+					}
+				}
+				updateLaunchConfigurationDialog();				
 			}
 		});
 		fileText.addModifyListener(new ModifyListener() {
@@ -104,9 +127,10 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				if (working != null){
-					working.setAttribute("runFileName", fileText.getText());
+					working.setAttribute(LaunchConfigurationProperty.FILE_NAME, fileText.getText());
 				}
 				setDirty(true);
+				updateLaunchConfigurationDialog();
 			}
 		});
 		setDirty(false);
@@ -115,28 +139,61 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Main";
 	}
 
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
-		// TODO Auto-generated method stub
 		try {
-			projectText.setText(configuration.getAttribute("runProjectName", "Select a project..."));
-			fileText.setText(configuration.getAttribute("runProjectFile", "Select a file..."));
+			projectText.setText(configuration.getAttribute(LaunchConfigurationProperty.PROJECT_NAME, "Select a project..."));
+			fileText.setText(configuration.getAttribute(LaunchConfigurationProperty.FILE_NAME, "Select a file..."));
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	public boolean isValid(ILaunchConfiguration launchConfig) {
+		String projectName;
+		System.out.println("Validating configuration");
+		try {
+			projectName = launchConfig.getAttribute(LaunchConfigurationProperty.PROJECT_NAME, "");
+			String fileName = launchConfig.getAttribute(LaunchConfigurationProperty.FILE_NAME, "");
+			if (projectName.length() > 0){
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+				if (project.exists()){
+					if (fileName != null){
+						IFile file = project.getFile(fileName);
+						if (file.exists()){
+							setErrorMessage(null);
+							return true;
+						}
+						else{
+							setErrorMessage("Select an existing file");
+						}
+					}
+					else{
+						setErrorMessage("Select an existing file");						
+					}
+				}
+				else{
+					setErrorMessage("Select an existing Euphoria project");
+				}
+			}
+			else{
+				setErrorMessage("Select an existing Euphoria project");
+			}
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		// TODO Auto-generated method stub
-		configuration.setAttribute("runProjectName", projectText.getText());
-		configuration.setAttribute("runFileName", fileText.getText());
+		configuration.setAttribute(LaunchConfigurationProperty.PROJECT_NAME, projectText.getText());
+		configuration.setAttribute(LaunchConfigurationProperty.FILE_NAME, fileText.getText());
 	}
 
 	@Override
