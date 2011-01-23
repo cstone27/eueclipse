@@ -38,5 +38,12 @@ public class PreferenceConstants {
 	// Interpreter
 	
 	
+	// Syntax Coloring
+	public static final String BUILTIN_COLOR_PREF = "Builtin_Syntax_Colors";
+	public static final String KEYWORD_COLOR_PREF = "Keyword_Syntax_Colors";
+	public static final String STRING_COLOR_PREF  = "String_Syntax_Colors";
+	public static final String COMMENT_COLOR_PREF = "Comment_Syntax_Colors";
+	public static final String DEFAULT_COLOR_PREF = "Default_Syntax_Colors";
+	
 	
 }

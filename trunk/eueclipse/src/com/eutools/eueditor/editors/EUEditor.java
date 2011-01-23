@@ -20,7 +20,7 @@ public class EUEditor extends TextEditor implements IAdaptable {
 		colorManager.dispose();
 		super.dispose();
 	}
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes" })
 	public Object getAdapter(Class adapter){
 		return super.getAdapter(adapter);
 	}
