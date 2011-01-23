@@ -71,6 +71,7 @@ public class EuBindLaunchConfigurationDelegate extends
 					runCmd += " -C " + configFile + " ";
 				}
 				runCmd += "\"" + filePath + "\"";
+				@SuppressWarnings("unchecked")
 				Map<String, String> launchEnv = configuration.getAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<String, String>)null);
 				final Process p; 
 

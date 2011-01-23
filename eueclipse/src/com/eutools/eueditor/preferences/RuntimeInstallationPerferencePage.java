@@ -19,8 +19,8 @@ public class RuntimeInstallationPerferencePage extends
 
 	@Override
 	protected void createFieldEditors() {
-		addField(new DirectoryFieldEditor(PreferenceConstants.P_EUDIR, 
-				"&EUDIR:", getFieldEditorParent()));
+//		addField(new DirectoryFieldEditor(PreferenceConstants.P_EUDIR, 
+//				"&EUDIR:", getFieldEditorParent()));
 	}
 
 	@Override
