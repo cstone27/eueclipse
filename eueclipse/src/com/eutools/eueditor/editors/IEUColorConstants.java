@@ -8,6 +8,6 @@ public interface IEUColorConstants {
 	RGB STRING = new RGB(0, 128, 0);
 	RGB DEFAULT = new RGB(0, 0, 0);
 	RGB TAG = new RGB(0, 0, 128);
-	RGB EU_BUILTIN = new RGB(253, 22, 207);
-	RGB EU_KEYWORD = new RGB(0,0,207);
+	RGB EU_BUILTIN = new RGB(0,0,207);
+	RGB EU_KEYWORD = new RGB(253, 22, 207);
 }

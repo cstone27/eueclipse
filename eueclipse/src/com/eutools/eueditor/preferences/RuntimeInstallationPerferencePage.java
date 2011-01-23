@@ -13,7 +13,8 @@ public class RuntimeInstallationPerferencePage extends
 	public RuntimeInstallationPerferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("EUPHORIA Installation Preferences");
+		setDescription("Add, remove or edit Euphoria installations.  The checked installation is the Euphoria installation which will be used by defuault for new Euphoria projects.");
+		
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class RuntimeInstallationPerferencePage extends
 
 	@Override
 	public void init(IWorkbench workbench) {
-
+		super.initialize();
 	}
 
 }
