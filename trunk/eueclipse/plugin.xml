@@ -96,20 +96,24 @@
             id="com.eutools.preferences.RuntimeinstallationPreferences"
             name="%page.name.0">
       </page>
+      <page
+            category="com.eutools.eueditor.preferences.EuEditorPreferencePage"
+            class="com.eutools.eueditor.preferences.EditorCategory"
+            id="com.eutools.eueditor.preferences.EditorCategory"
+            name="Editor">
+      </page>
+      <page
+            category="com.eutools.eueditor.preferences.EditorCategory"
+            class="com.eutools.eueditor.preferences.SyntaxColoring"
+            id="com.eutools.eueditor.preferences.SyntaxColoring"
+            name="Syntax Coloring">
+      </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
             class="com.eutools.eueditor.preferences.PreferenceInitializer">
       </initializer>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="com.eutools.eueditor.preferences.EuEditorPreferencePage"
-            id="EUEditor.page1"
-            name="%page.name.1">
-      </page>
    </extension>
   
    <extension
