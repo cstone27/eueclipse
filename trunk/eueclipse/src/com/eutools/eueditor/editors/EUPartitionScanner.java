@@ -9,14 +9,26 @@ import org.eclipse.jface.text.rules.Token;
 
 public class EUPartitionScanner extends RuleBasedPartitionScanner {
 	public final static String EU_COMMENT = "__eu_comment";
-	public final static String EU_TAG = "__eu_tag";
+	public final static String EU_STRING = "__eu_string";
 
 	public EUPartitionScanner() {
 		IToken procInstr = new Token(EU_COMMENT);
-		IPredicateRule[] rules = new IPredicateRule[2];
+		IToken stringInstr = new Token(EU_STRING);
+
+		IPredicateRule[] rules = new IPredicateRule[4];
+		char esc = (char)0;
 		rules[0] = new SingleLineRule("--", null, procInstr);
-		rules[1] = new MultiLineRule("/*", "*/", procInstr);
+		rules[1] = new MultiLineRule("/*", "*/", procInstr, esc, true); 
+		
+		// Add rule for double quotes
+		rules[2] = new SingleLineRule("\"", "\"", stringInstr, '\\');
+		// Add a rule for single quotes
+		rules[3] = new SingleLineRule("'", "'", stringInstr, '\\');
+
+		
 		setPredicateRules(rules);
+		
+
 	}
 	public IToken nextToken(){
 		IToken tok = super.nextToken();

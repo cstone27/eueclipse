@@ -17,7 +17,6 @@ import com.eutools.eueditor.preferences.PreferenceConstants;
 
 public class EUConfiguration extends SourceViewerConfiguration {
 	private EUDoubleClickStrategy doubleClickStrategy;
-	private EUTagScanner tagScanner;
 	private EUScanner scanner;
 	private ColorManager colorManager;
 
@@ -28,7 +27,7 @@ public class EUConfiguration extends SourceViewerConfiguration {
 		return new String[] {
 			IDocument.DEFAULT_CONTENT_TYPE,
 			EUPartitionScanner.EU_COMMENT,
-			EUPartitionScanner.EU_TAG };
+			EUPartitionScanner.EU_STRING };
 	}
 	public ITextDoubleClickStrategy getDoubleClickStrategy(
 		ISourceViewer sourceViewer,
@@ -45,38 +44,37 @@ public class EUConfiguration extends SourceViewerConfiguration {
 		}
 		return scanner;
 	}
-	protected EUTagScanner getTagScanner() {
-		if (tagScanner == null) {
-			tagScanner = new EUTagScanner(colorManager);
-			tagScanner.setDefaultReturnToken(new Token(new TextAttribute(colorManager.getColor(PreferenceConstants.DEFAULT_COLOR_PREF))));
-		}
-		return tagScanner;
-	}
 
 	public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
 		PresentationReconciler reconciler = new PresentationReconciler();
 
-		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getTagScanner());
-		reconciler.setDamager(dr, EUPartitionScanner.EU_TAG);
-		reconciler.setRepairer(dr, EUPartitionScanner.EU_TAG);
+		NonRuleBasedDamagerRepairer stringNDR =
+			new NonRuleBasedDamagerRepairer(
+				new TextAttribute(
+					colorManager.getColor(PreferenceConstants.STRING_COLOR_PREF)));
+		reconciler.setDamager(stringNDR, EUPartitionScanner.EU_STRING);
+		reconciler.setRepairer(stringNDR, EUPartitionScanner.EU_STRING);
 
-		dr = new DefaultDamagerRepairer(getEuScanner());
+		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getEuScanner()); //new DefaultDamagerRepairer(getStringScanner());
+		
 		reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
 		reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
 
-		reconciler.setDamager(dr, EUPartitionScanner.EU_COMMENT);
-		reconciler.setRepairer(dr, EUPartitionScanner.EU_COMMENT);
+		NonRuleBasedDamagerRepairer ndr =
+			new NonRuleBasedDamagerRepairer(
+				new TextAttribute(
+					colorManager.getColor(PreferenceConstants.COMMENT_COLOR_PREF)));
+		reconciler.setDamager(ndr, EUPartitionScanner.EU_COMMENT);
+		reconciler.setRepairer(ndr, EUPartitionScanner.EU_COMMENT);
 
 		return reconciler;
 	}
-	   public IContentAssistant getContentAssistant(ISourceViewer sv) {
-		      ContentAssistant ca = new ContentAssistant();
-		      IContentAssistProcessor pr = new CompletionProcessor();
-		      ca.setContentAssistProcessor(pr, "EU_DOC");
-		      ca.setContentAssistProcessor(pr, IDocument.DEFAULT_CONTENT_TYPE);
-		      ca.setInformationControlCreator(getInformationControlCreator(sv));
-		      return ca;
-		   }
-
-
+	public IContentAssistant getContentAssistant(ISourceViewer sv) {
+		ContentAssistant ca = new ContentAssistant();
+		IContentAssistProcessor pr = new CompletionProcessor();
+		ca.setContentAssistProcessor(pr, "EU_DOC");
+		ca.setContentAssistProcessor(pr, IDocument.DEFAULT_CONTENT_TYPE);
+		ca.setInformationControlCreator(getInformationControlCreator(sv));
+		return ca;
+	}
 }
