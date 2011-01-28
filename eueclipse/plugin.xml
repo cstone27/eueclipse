@@ -231,5 +231,108 @@
                       </actionSet>
                    </perspectiveExtension>
                 </extension>
+                <extension
+                      point="org.eclipse.ui.commands">
+                   <category
+                         id="EUEditor.commands.category"
+                         name="Sample Category">
+                   </category>
+                   <command
+                         categoryId="EUEditor.commands.category"
+                         description="Bind a Euphoria program"
+                         id="EUEditor.commands.bindCommand"
+                         name="Bind">
+                   </command>
+                   <command
+                         categoryId="EUEditor.commands.category"
+                         description="Translate a Euphoria program to C"
+                         id="EUEditor.commands.translateCommand"
+                         name="Translate">
+                   </command>
+                   <command
+                         categoryId="EUEditor.commands.category"
+                         description="Shroud a Euphoria program"
+                         id="EUEditor.commands.shroudCommand"
+                         name="Shroud Configurations">
+                   </command>
+                </extension>
+                <extension
+                      point="org.eclipse.ui.handlers">
+                   <handler
+                         class="com.eutools.eueditor.handlers.BindHandler"
+                         commandId="EUEditor.commands.bindCommand">
+                   </handler>
+                   <handler
+                         class="com.eutools.eueditor.handlers.ShroudHandler"
+                         commandId="EUEditor.commands.shroudCommand">
+                   </handler>
+                   <handler
+                         class="com.eutools.eueditor.handlers.TranslateHandler"
+                         commandId="EUEditor.commands.translateCommand">
+                   </handler>
+                </extension>
+                <extension
+                      point="org.eclipse.ui.bindings">
+                   <key
+                         commandId="EUEditor.commands.bindCommand"
+                         contextId="org.eclipse.ui.contexts.window"
+                         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+                         sequence="M1+6">
+                   </key>
+                </extension>
+                <extension
+                      point="org.eclipse.ui.menus">
+                   <menuContribution
+                         locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+                      <menu
+                            id="EUEditor.menus.euphoriaMenu"
+                            label="Euphoria"
+                            mnemonic="E">
+                         <menu
+                               id="EUEditor.menus.bindMenu"
+                               label="Bind">
+                            <command
+                                  commandId="EUEditor.commands.bindCommand"
+                                  id="EUEditor.menus.bindCommand"
+                                  label="Bind Configurations..."
+                                  mnemonic="B">
+                            </command>
+                         </menu>
+                         <menu
+                               id="EUEditor.menus.shroudMenu"
+                               label="Shroud">
+                            <command
+                                  commandId="EUEditor.commands.shroudCommand"
+                                  id="EUEditor.menus.shroudCommand"
+                                  label="Shroud Configurations..."
+                                  mnemonic="S">
+                            </command>
+                         </menu>
+                         <menu
+                               id="EUEditor.menus.translateMenu"
+                               label="Translate">
+                            <command
+                                  commandId="EUEditor.commands.translateCommand"
+                                  id="EUEditor.menus.translateCommand"
+                                  label="Translate Configurations..."
+                                  mnemonic="T"
+                                  style="push">
+                            </command>
+                         </menu>
+                      </menu>
+                   </menuContribution>
+                   <menuContribution
+                         locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+                      <toolbar
+                            id="EUEditor.toolbars.sampleToolbar">
+                         <command
+                               commandId="EUEditor.commands.bindCommand"
+                               icon="icons/sample.gif"
+                               id="EUEditor.toolbars.sampleCommand"
+                               tooltip="Bind Euphoria Program">
+                         </command>
+                      </toolbar>
+                   </menuContribution>
+                </extension>
 
 </plugin>

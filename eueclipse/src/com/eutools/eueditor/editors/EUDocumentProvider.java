@@ -23,7 +23,7 @@ public class EUDocumentProvider extends FileDocumentProvider {
 				new FastPartitioner(
 					new EUPartitionScanner(),
 					new String[] {
-						EUPartitionScanner.EU_TAG,
+						EUPartitionScanner.EU_STRING,
 						EUPartitionScanner.EU_COMMENT });
 			partitioner.connect(document);
 			document.setDocumentPartitioner(partitioner);
