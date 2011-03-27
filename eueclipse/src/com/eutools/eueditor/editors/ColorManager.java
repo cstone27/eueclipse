@@ -11,11 +11,16 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 
 import com.eutools.eueditor.Activator;
+import com.eutools.eueditor.preferences.PreferenceListenter;
 
 public class ColorManager {
 
 	protected Map<RGB, Color> fColorTable = new HashMap<RGB, Color>(10);
-
+	
+	public ColorManager(){
+		
+	}
+	
 	public void dispose() {
 		Iterator<Color> e = fColorTable.values().iterator();
 		while (e.hasNext())

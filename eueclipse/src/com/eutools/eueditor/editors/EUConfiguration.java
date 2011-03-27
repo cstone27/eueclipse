@@ -55,7 +55,7 @@ public class EUConfiguration extends SourceViewerConfiguration {
 		reconciler.setDamager(stringNDR, EUPartitionScanner.EU_STRING);
 		reconciler.setRepairer(stringNDR, EUPartitionScanner.EU_STRING);
 
-		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getEuScanner()); //new DefaultDamagerRepairer(getStringScanner());
+		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getEuScanner());
 		
 		reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
 		reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);

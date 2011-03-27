@@ -58,7 +58,7 @@
          <menu
                id="EUEditor.menu1"
                label="%menu.label"
-               path="additions">
+               path="new.ext">
             <separator
                   name="group1">
             </separator>
@@ -68,7 +68,7 @@
                enablesFor="1"
                id="EUEditor.newAction"
                label="%action.label.0"
-               menubarPath="EUEditor.menu1/group1">
+               menubarPath="file/new.ext">
          </action>
       </objectContribution>
    </extension>
@@ -196,18 +196,28 @@
                       <configurationType
                             id="com.eutools.eueditor.launch.BindLaunchConfigurationType">
                       </configurationType>
-                      <perspective
-                            id="com.eutools.eueditor.EuphoriaPerspective">
-                      </perspective>
                       <contextualLaunch>
                          <contextLabel
-                               label="Euphoria Console Application"
+                               label="Euphoria Application"
                                mode="run">
                          </contextLabel>
                          <enablement>
-                            <adapt
-                                  type="org.eclipse.debug.ui.actions.ILaunchable">
-                            </adapt>
+                            <with
+                                  variable="selection">
+                               <count
+                                     value="1">
+                               </count>
+                               <iterate
+                                     operator="and">
+                                  <test
+                                        property="org.eclipse.jdt.launching.isContainer">
+                                  </test>
+                                  <test
+                                        args="euphoriaNature"
+                                        property="org.eclipse.jdt.launching.hasProjectNature">
+                                  </test>
+                               </iterate>
+                            </with>
                          </enablement>
                       </contextualLaunch>
                    </shortcut>
@@ -255,6 +265,11 @@
                          id="EUEditor.commands.shroudCommand"
                          name="Shroud Configurations">
                    </command>
+                   <command
+                         description="Create a new Euphoria project"
+                         id="EUEditor.commands.newProjectCommand"
+                         name="New Project">
+                   </command>
                 </extension>
                 <extension
                       point="org.eclipse.ui.handlers">
@@ -269,6 +284,10 @@
                    <handler
                          class="com.eutools.eueditor.handlers.TranslateHandler"
                          commandId="EUEditor.commands.translateCommand">
+                   </handler>
+                   <handler
+                         class="com.eutools.eueditor.handlers.NewProjectHandler"
+                         commandId="EUEditor.commands.newProjectCommand">
                    </handler>
                 </extension>
                 <extension
@@ -332,6 +351,22 @@
                                tooltip="Bind Euphoria Program">
                          </command>
                       </toolbar>
+                   </menuContribution>
+                   <menuContribution
+                         locationURI="menu:new?after=additions">
+                      <command
+                            commandId="EUEditor.commands.newProjectCommand"
+                            label="Euphoria Project"
+                            style="push">
+                      </command>
+                   </menuContribution>
+                   <menuContribution
+                         locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu.new?before=additions">
+                      <command
+                            commandId="EUEditor.commands.newProjectCommand"
+                            label="Euphoria Project"
+                            style="push">
+                      </command>
                    </menuContribution>
                 </extension>
 

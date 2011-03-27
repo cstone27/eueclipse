@@ -2,6 +2,8 @@ package com.eutools.eueditor.preferences;
 
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
@@ -33,7 +35,10 @@ public class EditorCategory extends PreferencePage implements
 	@Override
 	protected Control createContents(Composite parent) {
 		// TODO Auto-generated method stub
-		return null;
+		GridLayout layout = new GridLayout();
+		Composite comp = new Composite(parent, SWT.NONE);
+		comp.setLayout(layout);
+		return comp;
 	}
 
 }
