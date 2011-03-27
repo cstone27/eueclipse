@@ -64,13 +64,9 @@ public class EUScanner extends RuleBasedScanner {
 			rule.addWord(keywords[i], keywordInstr);
 		}
 		IRule[] rules = new IRule[2];
-		//Add rule for comments
-		//rules[0] = new EndOfLineRule("--", procInstr);
-		//rules[1] = new MultiLineRule("/*", "*/", procInstr);
 		// Add generic whitespace rule.
 		rules[0] = new WhitespaceRule(new EUWhitespaceDetector());
 		rules[1] = rule;
-		//rules[4] = new SingleLineRule("\"", "\"", stringInstr, '\\');
 		setRules(rules);
 	}
 	public static String[] getBuiltins() {

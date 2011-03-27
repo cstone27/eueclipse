@@ -16,6 +16,7 @@ public class EUEditor extends TextEditor implements IAdaptable {
 		setSourceViewerConfiguration(new EUConfiguration(colorManager));
 		setDocumentProvider(new EUDocumentProvider());
 	}
+	
 	public void dispose() {
 		colorManager.dispose();
 		super.dispose();

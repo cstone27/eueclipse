@@ -22,9 +22,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
 
-public class EuBindLaunchConfigurationDelegate extends
-		LaunchConfigurationDelegate {
-
+public class EuBindLaunchConfigurationDelegate extends LaunchConfigurationDelegate {
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
 		System.out.println("Launch Config Delegate");

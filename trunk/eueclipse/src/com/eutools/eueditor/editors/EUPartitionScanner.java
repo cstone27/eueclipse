@@ -7,6 +7,8 @@ import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
 import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 
+import com.eutools.eueditor.editors.token.StringToken;
+
 public class EUPartitionScanner extends RuleBasedPartitionScanner {
 	public final static String EU_COMMENT = "__eu_comment";
 	public final static String EU_STRING = "__eu_string";
