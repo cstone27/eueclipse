@@ -1,4 +1,4 @@
-package com.eutools.eueditor.preferences;
+package com.eutools.eueditor.preferences.syntax.coloring;
 
 import org.eclipse.jface.preference.ColorFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
@@ -6,6 +6,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import com.eutools.eueditor.Activator;
+import com.eutools.eueditor.preferences.PreferenceConstants;
 
 public class SyntaxColoring extends FieldEditorPreferencePage implements
 		IWorkbenchPreferencePage {
