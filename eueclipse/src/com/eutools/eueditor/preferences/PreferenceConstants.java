@@ -5,6 +5,10 @@ package com.eutools.eueditor.preferences;
  */
 public class PreferenceConstants {
 
+	private PreferenceConstants() {
+		
+	}
+
 	public static final String P_PATH = "pathPreference";
 
 	public static final String P_BOOLEAN = "booleanPreference";
@@ -12,7 +16,7 @@ public class PreferenceConstants {
 	public static final String P_CHOICE = "choicePreference";
 
 	public static final String P_STRING = "stringPreference";
-	
+
 	// All Section
 	public static final String P_EUDIR = "globalEudir";
 	public static final String P_BATCH = "globlBatch";
@@ -24,7 +28,7 @@ public class PreferenceConstants {
 	public static final String P_WARNING = "globalWarningNames";
 	public static final String P_WARNINGFILE = "globalWarningFile";
 	public static final String P_EXCLUDEWARNING = "globalExcludeWarningNames";
-	
+
 	// Translator 
 	public static final String P_CONSOLE = "globalCon";
 	public static final String P_DEBUG = "globalDebug";
