@@ -26,12 +26,14 @@ public class EUEditor extends TextEditor implements IAdaptable {
 	public Object getAdapter(Class adapter){
 		if (IContentOutlinePage.class.equals(adapter)){
 			System.out.println("Content outline requested");
+			updateContentOutline();
+			return contentOutlinePage;
 		}
 		return super.getAdapter(adapter);
 	}
 	public void updateContentOutline(){
-		if (contentOutlinePage != null){
-			
+		if (contentOutlinePage == null){
+			contentOutlinePage = new EuContentOutlinePage();
 		}
 	}
 }
