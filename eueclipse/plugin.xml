@@ -104,7 +104,7 @@
       </page>
       <page
             category="com.eutools.eueditor.preferences.EditorCategory"
-            class="com.eutools.eueditor.preferences.SyntaxColoring"
+            class="com.eutools.eueditor.preferences.syntax.coloring.SyntaxColoring"
             id="com.eutools.eueditor.preferences.SyntaxColoring"
             name="Syntax Coloring">
       </page>
@@ -368,6 +368,26 @@
                             style="push">
                       </command>
                    </menuContribution>
+                </extension>
+                <extension
+                      point="org.eclipse.ui.views">
+                   <view
+                         allowMultiple="false"
+                         class="org.eclipse.ui.navigator.CommonNavigator"
+                         id="EUEditor.navigationView"
+                         name="Euphoria Navigator"
+                         restorable="true">
+                   </view>
+                </extension>
+                <extension
+                      point="org.eclipse.ui.navigator.viewer">
+                   <viewerContentBinding
+                         viewerId="EUEditor.navigationView">
+                      <includes>
+       	     				<contentExtension pattern="org.eclipse.ui.navigator.resourceContent" />		       	      
+	     					<contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
+			          </includes>
+                   </viewerContentBinding>
                 </extension>
 
 </plugin>
