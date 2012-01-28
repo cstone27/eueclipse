@@ -6,6 +6,8 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
+import com.eutools.eueditor.Activator;
+
 
 public class EuContentOutlinePage extends ContentOutlinePage {
 	public static final String ID = IPageLayout.ID_OUTLINE;
@@ -28,7 +30,8 @@ public class EuContentOutlinePage extends ContentOutlinePage {
 		if (tv != null){
 			tv.setContentProvider(new EuContentProvider());
 			tv.setLabelProvider(new EuLabelProvider());
-			tv.setInput(new String [] {"One", "Two"});
+//			tv.setInput(new String [] {"One", "Two"});
+			tv.setInput(Activator.outline);
 		}
 	}
 }
