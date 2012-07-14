@@ -3,6 +3,8 @@
 	<name>EueditorSite</name>
 	<comment></comment>
 	<projects>
+		<project>EUEditor</project>
+		<project>EuEditorFeature</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
