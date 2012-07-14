@@ -2,15 +2,14 @@
 <feature
       id="EuEditorFeature"
       label="EuEditor"
-      version="0.0.3"
-      nl="en_US">
+      version="0.0.3">
 
    <description url="http://eueclipse.googlecode.com">
       Euphoria editor is an Eclipse based editor for the Euphoria programming language.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright>
+      Copyright (c) 2012 Chris Stone
    </copyright>
 
    <license url="http://opensource.org/licenses/mit-license.php">
