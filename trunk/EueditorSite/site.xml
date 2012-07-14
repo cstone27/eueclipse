@@ -3,7 +3,6 @@
    <description name="Euphoria Editor">
       Eclipse based editor for the Euphoria programming language.
    </description>
-   <feature url="features/EuEditorFeature_0.0.2.jar" id="EuEditorFeature" version="0.0.2"/>
    <feature url="features/EuEditorFeature_0.0.3.jar" id="EuEditorFeature" version="0.0.3" nl="en_US">
       <category name="EuEditorCategory"/>
    </feature>
