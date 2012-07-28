@@ -30,5 +30,6 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.COMMENT_COLOR_PREF, StringConverter.asString(IEUColorConstants.EU_COMMENT));
 		store.setDefault(PreferenceConstants.DEFAULT_COLOR_PREF, StringConverter.asString(IEUColorConstants.DEFAULT));
 		store.setDefault(PreferenceConstants.KEYWORD_COLOR_PREF, StringConverter.asString(IEUColorConstants.EU_KEYWORD));
+		store.setDefault(PreferenceConstants.STRING_COLOR_PREF, StringConverter.asString(IEUColorConstants.STRING));
 	}
 }

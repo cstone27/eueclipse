@@ -1,7 +1,13 @@
 package com.eutools.eueditor.ui.views.contentoutline;
 
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.texteditor.ITextEditor;
 
 import com.eutools.eueditor.Activator;
 
@@ -11,10 +17,14 @@ public class EuContentProvider extends BaseWorkbenchContentProvider {
 		super();
 	}
 	public Object[] getElements(Object element){
-//		String[] roots = new String[3];
-//		roots[0] = "One";
-//		roots[1] = "Two";
-//		roots[2] = "Three";
+		IDocument doc = getCurrentDocument();
+		if (doc != null){
+			String content = doc.get();
+			if (content != null && content.length() > 0){
+				System.out.println("Doc contents\n");
+				System.out.println(content);
+			}
+		}
 		OutlineRoot [] roots = null;
 		if (element instanceof OutlineRoot){
 			OutlineRoot el = (OutlineRoot)element;
@@ -30,6 +40,26 @@ public class EuContentProvider extends BaseWorkbenchContentProvider {
 			}
 		}
 		return roots;
+	}
+	
+	private IDocument getCurrentDocument(){
+		IDocument doc = null;
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (window != null){
+			IWorkbenchPage activePage = window.getActivePage();
+			if (activePage != null){
+				IEditorPart editorPart = activePage.getActiveEditor();
+				if (editorPart != null){
+					try{
+						ITextEditor textEditor = (ITextEditor) editorPart;
+						doc = textEditor.getDocumentProvider().getDocument(textEditor.getEditorInput());
+					} catch(ClassCastException e){
+						System.out.println("editorPart is not an ITextEditor");
+					}
+				}
+			}
+		}
+		return doc;
 	}
 	
 	public Object[] getChildren(Object element){
