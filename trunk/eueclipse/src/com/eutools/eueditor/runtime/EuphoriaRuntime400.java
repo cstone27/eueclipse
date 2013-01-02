@@ -1,8 +1,8 @@
 package com.eutools.eueditor.runtime;
 
-public class EuRuntime400 extends EuRuntimeBase implements IEURuntime {
+public class EuphoriaRuntime400 extends EuphoriaRuntimeBase implements IEuphoriaRuntime {
 
-	public EuRuntime400() {
+	public EuphoriaRuntime400() {
 		super();
 	}
 	

@@ -11,7 +11,6 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 
 import com.eutools.eueditor.Activator;
-import com.eutools.eueditor.preferences.PreferenceListenter;
 
 public class ColorManager {
 

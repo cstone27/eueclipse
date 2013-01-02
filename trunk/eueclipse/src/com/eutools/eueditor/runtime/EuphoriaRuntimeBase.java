@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public abstract class EuRuntimeBase implements IEURuntime {
+public abstract class EuphoriaRuntimeBase implements IEuphoriaRuntime {
 
 	protected Map<String, String> properties = new HashMap<String, String>();
 	protected static RuntimeVersion version = new RuntimeVersion(0, 0, 0);
 	
-	public EuRuntimeBase (){
+	public EuphoriaRuntimeBase (){
 		properties = new HashMap<String, String>();
 	}
 

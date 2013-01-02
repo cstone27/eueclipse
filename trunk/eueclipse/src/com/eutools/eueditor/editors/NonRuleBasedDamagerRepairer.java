@@ -1,7 +1,6 @@
 package com.eutools.eueditor.editors;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
@@ -12,12 +11,7 @@ import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.TextPresentation;
 import org.eclipse.jface.text.presentation.IPresentationDamager;
 import org.eclipse.jface.text.presentation.IPresentationRepairer;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.custom.StyleRange;
-
-import com.eutools.eueditor.Activator;
-import com.eutools.eueditor.preferences.PreferenceConstants;
 
 public class NonRuleBasedDamagerRepairer
 	implements IPresentationDamager, IPresentationRepairer {
@@ -25,7 +19,7 @@ public class NonRuleBasedDamagerRepairer
 	/** The document this object works on */
 	protected IDocument fDocument;
 
-	/** The default text attribute if non is returned as data by the current token */
+	/** The default text attribute if none is returned as data by the current token */
 	protected TextAttribute fDefaultTextAttribute;
 	
 	protected ColorManager manager;
