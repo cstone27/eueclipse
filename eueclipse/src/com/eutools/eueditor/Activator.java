@@ -1,8 +1,5 @@
 package com.eutools.eueditor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -35,19 +32,19 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		outline = new OutlineRoot();
-		outline.setId(0);
-		for (int i=1; i<=10; i++){
-			OutlineRoot root = new OutlineRoot();
-			root.setId(i);
-			int childStart = i * 100;
-			for (int j=childStart; j<=childStart + 10; j++){
-				OutlineRoot child = new OutlineRoot();
-				child.setId(j);
-				root.addChild(child);
-			}
-			outline.addChild(root);
-		}
+//		outline = new OutlineRoot();
+//		outline.setId(0);
+//		for (int i=1; i<=10; i++){
+//			OutlineRoot root = new OutlineRoot();
+//			root.setId(i);
+//			int childStart = i * 100;
+//			for (int j=childStart; j<=childStart + 10; j++){
+//				OutlineRoot child = new OutlineRoot();
+//				child.setId(j);
+//				root.addChild(child);
+//			}
+//			outline.addChild(root);
+//		}
 	}
 
 	/*

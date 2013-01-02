@@ -2,7 +2,6 @@ package com.eutools.eueditor.editors;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import com.eutools.eueditor.ui.views.contentoutline.EuContentOutlinePage;
 
@@ -24,11 +23,11 @@ public class EUEditor extends TextEditor implements IAdaptable {
 	}
 	@SuppressWarnings({ "rawtypes" })
 	public Object getAdapter(Class adapter){
-		if (IContentOutlinePage.class.equals(adapter)){
-			System.out.println("Content outline requested");
-			updateContentOutline();
-			return contentOutlinePage;
-		}
+//		if (IContentOutlinePage.class.equals(adapter)){
+//			System.out.println("Content outline requested");
+//			updateContentOutline();
+//			return contentOutlinePage;
+//		}
 		return super.getAdapter(adapter);
 	}
 	public void updateContentOutline(){

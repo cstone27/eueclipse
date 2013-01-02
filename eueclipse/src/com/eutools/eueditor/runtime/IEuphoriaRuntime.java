@@ -2,7 +2,7 @@ package com.eutools.eueditor.runtime;
 
 import java.util.Map;
 
-public interface IEURuntime {
+public interface IEuphoriaRuntime {
 	
 	/**
 	 * Returns a copy of the {@link RuntimeVersion} of the Euphoria runtime

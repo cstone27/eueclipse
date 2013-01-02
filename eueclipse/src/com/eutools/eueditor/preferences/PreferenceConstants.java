@@ -17,17 +17,23 @@ public class PreferenceConstants {
 
 	public static final String P_STRING = "stringPreference";
 
-	// All Section
+	// Euphoria Runtime Environment
 	public static final String P_EUDIR = "globalEudir";
-	public static final String P_BATCH = "globlBatch";
-	public static final String P_COPYRIGHT = "globalCopyRight";
-	public static final String P_CONFIGFILE = "globalConfigFile";
-	public static final String P_DEFINES = "globalDefines";
 	public static final String P_INCLUDE = "globalInclude";
+	public static final String P_EUPHORIA_BINDER = "euphoriaBinder";
+	public static final String P_EUPHORIA_INTERPRETER = "euphoriaInterpreter";
+	public static final String P_EUPHORIA_TRANSLATOR = "euphoriaTranslator";
+	public static final String P_CONFIGFILE = "globalConfigFile";
+	public static final String P_ADDITIONAL_COMMAND_ARGS = "additionalCommandlineArgs";
+
 	public static final String P_STRICT = "globalStrict";
 	public static final String P_WARNING = "globalWarningNames";
 	public static final String P_WARNINGFILE = "globalWarningFile";
 	public static final String P_EXCLUDEWARNING = "globalExcludeWarningNames";
+
+	public static final String P_BATCH = "globlBatch";
+	public static final String P_COPYRIGHT = "globalCopyRight";
+	public static final String P_DEFINES = "globalDefines";
 
 	// Translator 
 	public static final String P_CONSOLE = "globalCon";
@@ -48,6 +54,5 @@ public class PreferenceConstants {
 	public static final String STRING_COLOR_PREF  = "String_Syntax_Colors";
 	public static final String COMMENT_COLOR_PREF = "Comment_Syntax_Colors";
 	public static final String DEFAULT_COLOR_PREF = "Default_Syntax_Colors";
-	
-	
+
 }
