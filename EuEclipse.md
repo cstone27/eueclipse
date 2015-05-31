@@ -1,0 +1,1 @@
+EuEclipse is an Eclipse plug-in which provides editing functionality for the Euphoria programming language.

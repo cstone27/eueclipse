@@ -1,0 +1,1 @@
+This is an Eclipse Plug-In which provides editing support for the [Euphoria](http://www.openeuphoria.org) programming language.
